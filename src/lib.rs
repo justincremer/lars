@@ -1,6 +1,20 @@
 use std::ops::{Add, Div, Mul, Sub};
 
-// Linearly interpolate a set of primitives in a higher dimension
+/* TODO:
+FLOAT
+sqrt(&self) -> Vec<T>
+pow(&self, other: Vec<T>) -> Vec<T>
+sin(&self) -> Vec<T>
+cos(&self) -> Vec<T>
+min(&self, other: Vec<T>) -> Vec<T>
+max(&self, other: Vec<T>) -> Vec<T>
+lerp(&self, others: (Vec<T>, Vec<T>)) -> Vec<T>
+
+INTEGER
+sqrlen(&self) -> i32
+ */
+
+// Interpolate a set of primitives
 pub fn lerp<T>(n: [T; 3]) -> T
 where
     T: Copy + Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T>,
@@ -55,16 +69,6 @@ where
             .collect()
     }
 }
-
-/* TODO:
-v2f_sqrt(V2f v0);
-v2f_pow(V2f v0, V2f v1);
-v2f_sin(V2f v0);
-v2f_cos(V2f v0);
-v2f_min(V2f v0, V2f v1);
-v2f_max(V2f v0, V2f v1);
-v2f_lerp(V2f v0, V2f v1, V2f v2);
- */
 
 #[cfg(test)]
 mod tests {
