@@ -12,7 +12,6 @@ pub trait Interporable<T>
 where
     T: Copy + Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T>,
 {
-    fn new(xs: &[T]) -> Self;
     fn from_single(n: T, s: usize) -> Self;
     fn sum(&self, other: Vec<T>) -> Self;
     fn sub(&self, other: Vec<T>) -> Self;
@@ -24,10 +23,6 @@ impl<T> Interporable<T> for Vec<T>
 where
     T: Copy + Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T>,
 {
-    fn new(xs: &[T]) -> Self {
-        Vec::from(xs)
-    }
-
     fn from_single(n: T, s: usize) -> Self {
         vec![n; s]
     }
@@ -69,4 +64,15 @@ v2f_cos(V2f v0);
 v2f_min(V2f v0, V2f v1);
 v2f_max(V2f v0, V2f v1);
 v2f_lerp(V2f v0, V2f v1, V2f v2);
-*/
+ */
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn lerp_works() {
+        let data = [3.0, 4.0, 5.0];
+        assert_eq!(8.0, lerp(data));
+    }
+}
